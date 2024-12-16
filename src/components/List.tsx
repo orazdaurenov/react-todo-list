@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import CrossedList from "./CrossedList";
+export type TodoObj = {
+  todo: string;
+  isDone: boolean;
+};
 
 const List = () => {
   //start with a default
-  type TodoObj = {
-    todo: string;
-    isDone: boolean;
-  };
 
   const newInitialTodos: Array<TodoObj> = [
     { todo: "First Todo", isDone: false },
@@ -39,28 +40,36 @@ const List = () => {
           type="submit"
           onClick={() => {
             setNeoTodos([...neoTodos, neoTodo]);
-
             setNeoTodo({ todo: " ", isDone: false });
           }}
         >
           SAVE
         </button>
       </label>
-      <ul>
+      <ol>
         {neoTodos.map((todo, index) => (
           <div key={index}>
-            <li>{todo.todo}</li>
+            <CrossedList todo={todo} />
             <button
               onClick={() => {
-                const nextTodos = neoTodos.filter((_, i) => i !== index);
-                setNeoTodos(nextTodos);
+                // make a new array
+                // in that array, the todo that was clicked
+                // should be done
+                // [false,{todo:"hi",isDone:false}]
+                const newArr = neoTodos.map((todo) => {
+                  if (true) {
+                    return { todo: todo.todo, isDone: true };
+                  }
+                  return todo;
+                });
+                setNeoTodos(newArr);
               }}
             >
               DELETE
             </button>
           </div>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 };

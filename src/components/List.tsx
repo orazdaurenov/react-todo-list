@@ -17,7 +17,7 @@ const List = () => {
   const [todos, setTodos] = useState(InitialTodos);
   const [newTodo, setNewTodo] = useState(" ");
   const [neoTodos, setNeoTodos] = useState(newInitialTodos);
-  const [neoTodo, setNeoTodo] = useState<TodoObj>({ todo: "", isDone: false });
+  const [neoTodo, setNeoTodo] = useState<TodoObj>({ todo: " ", isDone: false });
   return (
     <div>
       <h1>Todo List</h1>
@@ -26,8 +26,13 @@ const List = () => {
         <input
           type="text"
           onKeyDown={(e) => {
-            if (e.key === "Enter") return setNeoTodos([...neoTodos, neoTodo]);
-            setNeoTodo({ todo: " ", isDone: false });
+            if (e.key === "Enter") {
+              if (neoTodo.todo.trim().length > 0) {
+                setNeoTodos([...neoTodos, neoTodo]);
+                setNeoTodo({ todo: " ", isDone: false });
+              }
+              e.preventDefault();
+            }
           }}
           onChange={(e) => {
             // {todo:string, isDone: boolean}

@@ -25,6 +25,10 @@ const List = () => {
       <label htmlFor="">
         <input
           type="text"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") return setNeoTodos([...neoTodos, neoTodo]);
+            setNeoTodo({ todo: " ", isDone: false });
+          }}
           onChange={(e) => {
             // {todo:string, isDone: boolean}
             // {key:value}

@@ -19,9 +19,8 @@ const List = () => {
   const [neoTodos, setNeoTodos] = useState(newInitialTodos);
   const [neoTodo, setNeoTodo] = useState<TodoObj>({ todo: " ", isDone: false });
   return (
-    <div>
+    <div className="container">
       <h1>Todo List</h1>
-      <p>neo stuff</p>
       <label htmlFor="">
         <input
           type="text"
@@ -76,6 +75,8 @@ const List = () => {
             >
               DELETE
             </button>
+
+            <button onClick={() => console.log("Clicked")}>EDIT</button>
           </div>
         ))}
       </ol>

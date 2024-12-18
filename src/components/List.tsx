@@ -64,8 +64,8 @@ const List = () => {
                 // in that array, the todo that was clicked
                 // should be done
                 // [false,{todo:"hi",isDone:false}]
-                const newArr = neoTodos.map((todo) => {
-                  if (true) {
+                const newArr = neoTodos.map((todo, childIndex) => {
+                  if (childIndex === index) {
                     return { todo: todo.todo, isDone: true };
                   }
                   return todo;

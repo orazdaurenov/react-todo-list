@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-
-type TodoListObj = {
-  todo: string[];
-  isDone: boolean;
-};
+import { useState } from "react";
 
 const NewList = () => {
-  let myTodos = " ";
-  const [todos, setTodos] = useState(myTodos);
+  const [todos, setTodos] = useState<string[]>([]);
+  const [newTodo, setNewTodo] = useState<string>("");
+
+  const handleAddTodo = () => {
+    if (newTodo.trim()) {
+      setTodos([...todos, newTodo.trim()]);
+      setNewTodo("");
+    }
+  };
+
   return (
     <>
       <h1>My Todo List</h1>
@@ -15,16 +18,28 @@ const NewList = () => {
         <input
           type="text"
           placeholder="write here..."
+          value={newTodo}
           onChange={(e) => {
-            const iTodo = e.target.value;
-            setTodos(iTodo);
+            setNewTodo(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleAddTodo();
+            }
           }}
         />
-        <button type="submit">SAVE</button>
+        <button type="submit" onClick={handleAddTodo}>
+          SAVE
+        </button>
       </label>
-      <ul>
-        <li>{todos}</li>
-      </ul>
+      <ol>
+        {todos.map((todo, index) => (
+          <>
+            <li key={index}>{todo}</li>
+            <button>DELETE</button>
+          </>
+        ))}
+      </ol>
     </>
   );
 };

@@ -17,8 +17,3 @@ body {
 h1 {
   text-align: center;
 }
-
-ol li {
-  display: inline-block;
-  margin-bottom: 1em;
-}

@@ -2,20 +2,27 @@ import React, { useState } from "react";
 
 export type RenderTodoProps = {
   text: string;
-  onSave: () => void;
+  onSave: (e: string) => void;
 };
 
 const RenderTodo = ({ text, onSave }: RenderTodoProps) => {
   const [changed, setChanged] = useState(false);
+  const [newTodo, setNewTodo] = useState(text);
 
   if (changed) {
     return (
       <>
-        <input type="text" name="" id="" value={text} />
+        <input
+          type="text"
+          name=""
+          id=""
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+        />
         <button
           type="submit"
           onClick={() => {
-            onSave();
+            onSave(newTodo);
             setChanged(false);
           }}
         >

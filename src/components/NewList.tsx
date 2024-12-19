@@ -1,4 +1,5 @@
 import { useState } from "react";
+import EditInput from "./EditInput";
 
 const NewList = () => {
   const [todos, setTodos] = useState<string[]>([]);
@@ -36,7 +37,17 @@ const NewList = () => {
         {todos.map((todo, index) => (
           <>
             <li key={index}>{todo}</li>
-            <button>DELETE</button>
+            <button
+              onClick={() => {
+                const filtered = todos.filter(
+                  (_, Filtrindex) => Filtrindex !== index
+                );
+                setTodos(filtered);
+              }}
+            >
+              DELETE
+            </button>
+            <EditInput onSave={() => {} /*save edited text*/} text={todo} />
           </>
         ))}
       </ol>

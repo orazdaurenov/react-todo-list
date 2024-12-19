@@ -12,7 +12,13 @@ const RenderTodo = ({ text, onSave }: RenderTodoProps) => {
     return (
       <>
         <input type="text" name="" id="" value={text} />
-        <button type="submit" onClick={onSave}>
+        <button
+          type="submit"
+          onClick={() => {
+            onSave();
+            setChanged(false);
+          }}
+        >
           SAVE
         </button>
       </>

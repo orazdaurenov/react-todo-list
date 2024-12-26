@@ -47,7 +47,19 @@ const NewList = () => {
             >
               DELETE
             </button>
-            <EditInput onSave={() => {} /*save edited text*/} text={todo} />
+            <EditInput
+              index={index}
+              onSave={(text, index) => {
+                const newTodos = todos.map((todo, i) => {
+                  if (i === index) {
+                    return text;
+                  }
+                  return todo;
+                });
+                setTodos(newTodos);
+              }}
+              text={todo}
+            />
           </>
         ))}
       </ol>

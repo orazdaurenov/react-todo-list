@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 export type RenderTodoProps = {
   text: string;
-  onSave: (e: string) => void;
+  onSave: (text: string, index: number) => void;
+  index: number;
 };
 
-const RenderTodo = ({ text, onSave }: RenderTodoProps) => {
+const RenderTodo = ({ text, onSave, index }: RenderTodoProps) => {
   const [changed, setChanged] = useState(false);
   const [newTodo, setNewTodo] = useState(text);
 
@@ -22,7 +23,10 @@ const RenderTodo = ({ text, onSave }: RenderTodoProps) => {
         <button
           type="submit"
           onClick={() => {
-            onSave(newTodo);
+            // Repalce an existing todo:
+            // 1) Find a way to identify the todo that needs to be replaced from the todo array
+            //    - 1b: get current index from the todos arr ✔️
+            onSave(newTodo, index);
             setChanged(false);
           }}
         >

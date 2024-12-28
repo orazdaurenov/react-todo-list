@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import EditInput from "./EditInput";
+import { log } from "console";
+import Buttons from "./Buttons";
 
 const NewList = () => {
   const [todos, setTodos] = useState<string[]>([]);
@@ -62,6 +64,7 @@ const NewList = () => {
                 }}
                 text={todo}
               />
+              <Buttons buttonClass="green">DONE</Buttons>
             </div>
           </div>
         ))}

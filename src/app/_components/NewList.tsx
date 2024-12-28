@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import EditInput from "./EditInput";
 
@@ -13,8 +14,8 @@ const NewList = () => {
   };
 
   return (
-    <>
-      <h1>My Todo List</h1>
+    <div className="flex flex-col gap-3">
+      <h1 className="text-3xl">My Todo List</h1>
       <label htmlFor="">
         <input
           type="text"
@@ -33,11 +34,12 @@ const NewList = () => {
           SAVE
         </button>
       </label>
-      <ol>
+      <ol className="list-decimal">
         {todos.map((todo, index) => (
-          <>
-            <li key={index}>{todo}</li>
-            <button
+          <div key={index}>
+            <li>{todo}</li>
+            <div className="flex gap-3"> 
+<button
               onClick={() => {
                 const filtered = todos.filter(
                   (_, Filtrindex) => Filtrindex !== index
@@ -60,10 +62,11 @@ const NewList = () => {
               }}
               text={todo}
             />
-          </>
+            </div>
+          </div>
         ))}
       </ol>
-    </>
+    </div>
   );
 };
 

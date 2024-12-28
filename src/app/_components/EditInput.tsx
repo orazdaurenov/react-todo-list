@@ -30,6 +30,12 @@ const RenderTodo = ({ text, onSave, index }: RenderTodoProps) => {
             onSave(newTodo, index);
             setChanged(false);
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSave(newTodo, index);
+              setChanged(false);
+            }
+          }}
         >
           SAVE
         </Buttons>

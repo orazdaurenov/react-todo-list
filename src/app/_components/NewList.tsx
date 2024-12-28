@@ -32,16 +32,17 @@ const NewList = () => {
             }
           }}
         />
-        <button type="submit" onClick={handleAddTodo}>
+        <Buttons buttonClass="blue" onClick={handleAddTodo}>
           SAVE
-        </button>
+        </Buttons>
       </label>
       <ol className="list-decimal">
         {todos.map((todo, index) => (
           <div key={index}>
             <li>{todo}</li>
             <div className="flex gap-3">
-              <button
+              <Buttons
+                buttonClass="red"
                 onClick={() => {
                   const filtered = todos.filter(
                     (_, Filtrindex) => Filtrindex !== index,
@@ -50,7 +51,7 @@ const NewList = () => {
                 }}
               >
                 DELETE
-              </button>
+              </Buttons>
               <EditInput
                 index={index}
                 onSave={(text, index) => {

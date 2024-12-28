@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import EditInput from "./EditInput";
 
@@ -38,30 +38,30 @@ const NewList = () => {
         {todos.map((todo, index) => (
           <div key={index}>
             <li>{todo}</li>
-            <div className="flex gap-3"> 
-<button
-              onClick={() => {
-                const filtered = todos.filter(
-                  (_, Filtrindex) => Filtrindex !== index
-                );
-                setTodos(filtered);
-              }}
-            >
-              DELETE
-            </button>
-            <EditInput
-              index={index}
-              onSave={(text, index) => {
-                const newTodos = todos.map((todo, i) => {
-                  if (i === index) {
-                    return text;
-                  }
-                  return todo;
-                });
-                setTodos(newTodos);
-              }}
-              text={todo}
-            />
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  const filtered = todos.filter(
+                    (_, Filtrindex) => Filtrindex !== index,
+                  );
+                  setTodos(filtered);
+                }}
+              >
+                DELETE
+              </button>
+              <EditInput
+                index={index}
+                onSave={(text, index) => {
+                  const newTodos = todos.map((todo, i) => {
+                    if (i === index) {
+                      return text;
+                    }
+                    return todo;
+                  });
+                  setTodos(newTodos);
+                }}
+                text={todo}
+              />
             </div>
           </div>
         ))}

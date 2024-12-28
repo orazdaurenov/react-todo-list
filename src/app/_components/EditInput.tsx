@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Buttons from "./Buttons";
 
 export type RenderTodoProps = {
   text: string;
@@ -20,8 +21,8 @@ const RenderTodo = ({ text, onSave, index }: RenderTodoProps) => {
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button
-          type="submit"
+        <Buttons
+          buttonClass="red"
           onClick={() => {
             // Repalce an existing todo:
             // 1) Find a way to identify the todo that needs to be replaced from the todo array
@@ -31,11 +32,15 @@ const RenderTodo = ({ text, onSave, index }: RenderTodoProps) => {
           }}
         >
           SAVE
-        </button>
+        </Buttons>
       </>
     );
   }
-  return <button onClick={() => setChanged(true)}>EDIT</button>;
+  return (
+    <Buttons buttonClass="orange" onClick={() => setChanged(true)}>
+      EDIT
+    </Buttons>
+  );
 };
 
 export default RenderTodo;

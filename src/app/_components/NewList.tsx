@@ -16,10 +16,11 @@ const NewList = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <h1 className="text-3xl">My Todo List</h1>
+    <div className="flex h-72 max-h-96 flex-col gap-3 rounded border-2 border-solid border-lime-800 p-4">
+      <h1 className="text-center text-3xl">My Todo List</h1>
       <label htmlFor="">
         <input
+          className="border-1 border-solid border-black"
           type="text"
           placeholder="write here..."
           value={newTodo}
@@ -36,7 +37,7 @@ const NewList = () => {
           SAVE
         </Buttons>
       </label>
-      <ol className="list-decimal">
+      <ol className="list-decimal overflow-y-auto">
         {todos.map((todo, index) => (
           <div key={index}>
             <li>{todo}</li>

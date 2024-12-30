@@ -4,14 +4,30 @@ import EditInput from "./EditInput";
 import { log } from "console";
 import Buttons from "./Buttons";
 
+type TodoObj = {
+  text: string;
+  done: boolean;
+};
+
 const NewList = () => {
-  const [todos, setTodos] = useState<string[]>([]);
-  const [newTodo, setNewTodo] = useState<string>("");
+  const [todos, setTodos] = useState<TodoObj[]>([
+    {
+      text: "",
+      done: false,
+    },
+  ]);
+  const [newTodo, setNewTodo] = useState<TodoObj>({ text: "", done: false });
 
   const handleAddTodo = () => {
-    if (newTodo.trim()) {
-      setTodos([...todos, newTodo.trim()]);
-      setNewTodo("");
+    console.log("New Todo Text", newTodo.text);
+
+    if (newTodo.text.trim()) {
+      const todo: TodoObj = {
+        text: newTodo.text.trim(),
+        done: false,
+      };
+      setTodos([...todos, todo]);
+      setNewTodo({ text: " ", done: false });
     }
   };
 
@@ -23,9 +39,14 @@ const NewList = () => {
           className="border-1 border-solid border-black"
           type="text"
           placeholder="write here..."
-          value={newTodo}
+          value={newTodo.text}
           onChange={(e) => {
-            setNewTodo(e.target.value);
+            const todo: TodoObj = {
+              text: e.target.value,
+              done: false,
+            };
+
+            setNewTodo(todo);
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -40,7 +61,7 @@ const NewList = () => {
       <ol className="list-decimal overflow-y-auto">
         {todos.map((todo, index) => (
           <div key={index}>
-            <li>{todo}</li>
+            <li>{todo.text}</li>
             <div className="flex gap-3">
               <Buttons
                 buttonClass="red"
@@ -64,7 +85,7 @@ const NewList = () => {
                   });
                   setTodos(newTodos);
                 }}
-                text={todo}
+                text={todo.text}
               />
               <Buttons buttonClass="green">DONE</Buttons>
             </div>

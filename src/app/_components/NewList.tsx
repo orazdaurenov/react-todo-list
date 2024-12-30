@@ -76,9 +76,9 @@ const NewList = () => {
               <EditInput
                 index={index}
                 onSave={(text, index) => {
-                  const newTodos = todos.map((todo, i) => {
+                  const newTodos: TodoObj[] = todos.map((todo, i) => {
                     if (i === index) {
-                      return text;
+                      return { text: text, done: false };
                     }
                     return todo;
                   });

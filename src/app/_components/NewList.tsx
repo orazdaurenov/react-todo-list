@@ -19,13 +19,12 @@ const NewList = () => {
   const [newTodo, setNewTodo] = useState<TodoObj>({ text: "", done: false });
 
   const handleAddTodo = () => {
-    console.log("New Todo Text", newTodo.text);
-
     if (newTodo.text.trim()) {
       const todo: TodoObj = {
         text: newTodo.text.trim(),
         done: false,
       };
+      console.log([...todos]);
       setTodos([...todos, todo]);
       setNewTodo({ text: " ", done: false });
     }
